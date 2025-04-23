@@ -1,5 +1,5 @@
-import { CartItem, Coupon, Product } from '../../types.ts';
-import { useCart } from "../hooks";
+import { CartItem, Coupon, Product } from '../../../types.ts';
+import { useCart } from "../../hooks/index.ts";
 
 interface Props {
   products: Product[];
@@ -17,6 +17,8 @@ export const CartPage = ({ products, coupons }: Props) => {
     selectedCoupon
   } = useCart();
 
+  const { totalBeforeDiscount, totalAfterDiscount, totalDiscount } = calculateTotal()
+
   const getMaxDiscount = (discounts: { quantity: number; rate: number }[]) => {
     return discounts.reduce((max, discount) => Math.max(max, discount.rate), 0);
   };
@@ -26,7 +28,7 @@ export const CartPage = ({ products, coupons }: Props) => {
     return product.stock - (cartItem?.quantity || 0);
   };
 
-  const { totalBeforeDiscount, totalAfterDiscount, totalDiscount } = calculateTotal()
+  
 
   const getAppliedDiscount = (item: CartItem) => {
     const { discounts } = item.product;
@@ -50,6 +52,7 @@ export const CartPage = ({ products, coupons }: Props) => {
             {products.map(product => {
               const remainingStock = getRemainingStock(product);
               return (
+                //productList
                 <div key={product.id} data-testid={`product-${product.id}`} className="bg-white p-3 rounded shadow">
                   <div className="flex justify-between items-center mb-2">
                     <span className="font-semibold">{product.name}</span>
@@ -97,6 +100,7 @@ export const CartPage = ({ products, coupons }: Props) => {
             {cart.map(item => {
               const appliedDiscount = getAppliedDiscount(item);
               return (
+                //CartList
                 <div key={item.product.id} className="flex justify-between items-center bg-white p-3 rounded shadow">
                   <div>
                     <span className="font-semibold">{item.product.name}</span>
@@ -137,6 +141,7 @@ export const CartPage = ({ products, coupons }: Props) => {
 
           <div className="mt-6 bg-white p-4 rounded shadow">
             <h2 className="text-2xl font-semibold mb-2">쿠폰 적용</h2>
+            //CouponList
             <select
               onChange={(e) => applyCoupon(coupons[parseInt(e.target.value)])}
               className="w-full p-2 border rounded mb-2"
@@ -155,7 +160,8 @@ export const CartPage = ({ products, coupons }: Props) => {
               </p>
             )}
           </div>
-
+            
+          //TotalPrice
           <div className="mt-6 bg-white p-4 rounded shadow">
             <h2 className="text-2xl font-semibold mb-2">주문 요약</h2>
             <div className="space-y-1">
