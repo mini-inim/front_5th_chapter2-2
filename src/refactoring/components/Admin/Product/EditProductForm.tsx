@@ -12,7 +12,7 @@ interface Props {
 
 export const EditProductForm = ({product, products, onProductUpdate}: Props) => {
 
-    const { editingProduct, editProduct, setEditingProduct, updateProductName, updateProductPrice, updateStock } = useEditProductForm();
+    const { editingProduct, editProduct, editComplete, setEditingProduct, updateProductName, updateProductPrice, updateStock } = useEditProductForm();
     
     console.log("editingProduct: ", editingProduct)
     console.log("isSame: ", editingProduct?.id === product.id)
@@ -59,6 +59,13 @@ export const EditProductForm = ({product, products, onProductUpdate}: Props) => 
                    setEditingProduct={setEditingProduct}
                    onProductUpdate={onProductUpdate}
                 />
+
+                <button
+                    onClick={() => editComplete(onProductUpdate)}
+                    className="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 mt-2"
+                >
+                수정 완료
+                </button>
             </div>
         )
     }
