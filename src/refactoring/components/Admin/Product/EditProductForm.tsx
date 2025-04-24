@@ -12,9 +12,14 @@ interface Props {
 
 export const EditProductForm = ({product, products, onProductUpdate}: Props) => {
 
-    const { editingProduct, setEditingProduct, updateProductName, updateProductPrice, updateStock } = useEditProductForm();
+    const { editingProduct, editProduct, setEditingProduct, updateProductName, updateProductPrice, updateStock } = useEditProductForm();
+    
+    console.log("editingProduct: ", editingProduct)
+    console.log("isSame: ", editingProduct?.id === product.id)
 
     if(editingProduct && editingProduct.id === product.id){
+
+       
         return (
             <div>
                 <div className="InputForm">
@@ -59,6 +64,9 @@ export const EditProductForm = ({product, products, onProductUpdate}: Props) => 
     }
 
     return (
-        <EditProductDiscountButton product={product} />
+        <EditProductDiscountButton 
+            product={product} 
+            editProduct={editProduct}
+        />
     )
 }

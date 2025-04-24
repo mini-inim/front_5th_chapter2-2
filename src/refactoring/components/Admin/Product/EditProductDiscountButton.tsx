@@ -1,13 +1,11 @@
 import { Product } from "../../../../types";
-import { useEditProductForm } from "../../../hooks/Admin/useEditProduct"
 
 interface Props{
-    product: Product
+    product: Product;
+    editProduct: (product: Product) => void;
 }
 
-export const EditProductDiscountButton = ({product}: Props) => {
-
-    const { editProduct } = useEditProductForm();
+export const EditProductDiscountButton = ({product, editProduct}: Props) => {
 
     return(
         <div>

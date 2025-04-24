@@ -16,7 +16,10 @@ export const ProductList = ({onProductUpdate, products}: Props) => {
     return(
       <div className="space-y-2">
         {products.map((product, index) => (
-          <div key={product.id} data-testid={`product-${index + 1}`} className="bg-white p-4 rounded shadow">
+          <div key={product.id} 
+                data-testid={`product-${index + 1}`} 
+                className="bg-white p-4 rounded shadow"
+          >
             
             <ProductItemToggle 
               product = {product}
