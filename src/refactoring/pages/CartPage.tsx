@@ -28,8 +28,6 @@ export const CartPage = ({ products, coupons }: Props) => {
     return product.stock - (cartItem?.quantity || 0);
   };
 
-  
-
   const getAppliedDiscount = (item: CartItem) => {
     const { discounts } = item.product;
     const { quantity } = item;
