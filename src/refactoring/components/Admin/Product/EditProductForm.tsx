@@ -13,13 +13,9 @@ interface Props {
 export const EditProductForm = ({product, products, onProductUpdate}: Props) => {
 
     const { editingProduct, editProduct, editComplete, setEditingProduct, updateProductName, updateProductPrice, updateStock } = useEditProductForm();
-    
-    console.log("editingProduct: ", editingProduct)
-    console.log("isSame: ", editingProduct?.id === product.id)
 
     if(editingProduct && editingProduct.id === product.id){
-
-       
+ 
         return (
             <div>
                 <div className="InputForm">

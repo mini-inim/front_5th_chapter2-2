@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Discount, Coupon, Product } from "../../../types";
+import { Discount, Product } from "../../../types";
 
 
 

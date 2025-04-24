@@ -1,5 +1,4 @@
 import { CartItem } from "../../../../types";
-import { useCart } from "../../../hooks";
 
 interface Props{
     item: CartItem;
