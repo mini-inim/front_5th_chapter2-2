@@ -1,19 +1,18 @@
 import { useState } from 'react';
-import { Coupon, Discount, Product } from '../../types';
+import { Product } from '../../types';
 import { AdminCouponList } from '../components/Admin/Coupon/AdminCouponList';
 import { AddCouponForm } from '../components/Admin/Coupon/AddCoupon';
 import { ProductList } from '../components/Admin/Product/ProductList';
 import { AddProductForm } from '../components/Admin/Product/AddNewProduct';
+import { useProductContext } from '../context/ProductContext';
+import { useCouponsContext } from '../context/CouponContext';
 
-interface Props{
-  products: Product[],
-  coupons: Coupon[];
-  onProductUpdate: (updatedProduct: Product) => void;
-  onProductAdd: (newProduct: Product) => void;
-  onCouponAdd: (newCoupon: Coupon) => void;
-}
 
-export const AdminPage = ({ products, coupons, onProductUpdate, onProductAdd, onCouponAdd }: Props) => {
+export const AdminPage = () => {
+
+  const { products, updateProduct, addProduct } = useProductContext();
+  const { coupons, addCoupon } = useCouponsContext();
+
   const [showNewProductForm, setShowNewProductForm] = useState(false);
   const [newProduct, setNewProduct] = useState<Omit<Product, 'id'>>({
     name: '',
@@ -25,7 +24,7 @@ export const AdminPage = ({ products, coupons, onProductUpdate, onProductAdd, on
 
   const handleAddNewProduct = () => {
     const productWithId = { ...newProduct, id: Date.now().toString() };
-    onProductAdd(productWithId);
+    addProduct(productWithId);
     setNewProduct({
       name: '',
       price: 0,
@@ -57,7 +56,7 @@ export const AdminPage = ({ products, coupons, onProductUpdate, onProductAdd, on
           )}
 
           <ProductList 
-            onProductUpdate = {onProductUpdate}
+            onProductUpdate = {updateProduct}
             products = {products}
           />
 
@@ -66,7 +65,7 @@ export const AdminPage = ({ products, coupons, onProductUpdate, onProductAdd, on
         <div>
           <h2 className="text-2xl font-semibold mb-4">쿠폰 관리</h2>
           <div className="bg-white p-4 rounded shadow">
-            <AddCouponForm onCouponAdd={onCouponAdd}/>
+            <AddCouponForm onCouponAdd={addCoupon}/>
             <div>
               <h3 className="text-lg font-semibold mb-2">현재 쿠폰 목록</h3>
               <AdminCouponList coupons = {coupons}/>

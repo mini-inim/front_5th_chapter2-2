@@ -1,13 +1,14 @@
 import { Coupon } from "../../../../types";
-import { useCart } from "../../../hooks"
 
 interface Props{
     coupons: Coupon[]
+    selectedCoupon: Coupon | null;
+    applyCoupon: (c: Coupon) => void;
 }
 
-export const CouponList = ({coupons}: Props) => {
+export const CouponList = (props: Props) => {
 
-    const { applyCoupon, selectedCoupon } = useCart();
+  const { coupons, selectedCoupon, applyCoupon } = props;
 
     return(
         <div className="mt-6 bg-white p-4 rounded shadow">
