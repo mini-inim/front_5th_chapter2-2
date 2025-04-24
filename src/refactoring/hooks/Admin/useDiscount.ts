@@ -5,13 +5,6 @@ import { Discount, Coupon, Product } from "../../../types";
 
 export const useDiscount = () =>{
     const [newDiscount, setNewDiscount] = useState<Discount>({ quantity: 0, rate: 0 });
-    const [newCoupon, setNewCoupon] = useState<Coupon>({
-        name: '',
-        code: '',
-        discountType: 'percentage',
-        discountValue: 0
-    });
-
 
     const addDiscount = (
         productId: string,
@@ -58,24 +51,11 @@ export const useDiscount = () =>{
     };
 
 
-    const addCoupon = ( onCouponAdd: (newCoupon: Coupon) => void ) => {
-        onCouponAdd(newCoupon);
-        setNewCoupon({
-          name: '',
-          code: '',
-          discountType: 'percentage',
-          discountValue: 0
-        });
-    };
-
 
     return{       
         newDiscount, 
         setNewDiscount, 
-        newCoupon, 
-        setNewCoupon,
         addDiscount,
         removeDiscount,
-        addCoupon
     }
 }
