@@ -42,7 +42,7 @@ export const AddCouponForm = ({ newCoupon, setNewCoupon, handleAddCoupon }: Prop
             />
             </div>
             <button
-            onClick={handleAddCoupon}
+            onClick={() => handleAddCoupon}
             className="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600"
             >
             쿠폰 추가
