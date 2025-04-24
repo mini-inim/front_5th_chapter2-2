@@ -66,7 +66,7 @@ export const AdminPage = ({ products, coupons, onProductUpdate, onProductAdd, on
         <div>
           <h2 className="text-2xl font-semibold mb-4">쿠폰 관리</h2>
           <div className="bg-white p-4 rounded shadow">
-            <AddCouponForm />
+            <AddCouponForm onCouponAdd={onCouponAdd}/>
             <div>
               <h3 className="text-lg font-semibold mb-2">현재 쿠폰 목록</h3>
               <AdminCouponList coupons = {coupons}/>

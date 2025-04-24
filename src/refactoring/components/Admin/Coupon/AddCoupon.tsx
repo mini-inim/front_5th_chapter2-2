@@ -1,10 +1,13 @@
-import { useAdminCoupon } from "../../../hooks/Admin/useAdminCoupon"
+import { Coupon } from "../../../../types";
+import { useAdminCoupon } from "../../../hooks";
 
+interface Props {
+    onCouponAdd: (newCoupon: Coupon) => void;
+}
 
+export const AddCouponForm = ({onCouponAdd}: Props) => {
 
-export const AddCouponForm = () => {
-
-    const { newCoupon, setNewCoupon, addCoupon } = useAdminCoupon();
+    const { newCoupon, setNewCoupon, adminAddCoupon } = useAdminCoupon();
 
     return(
         <div className="space-y-2 mb-4">
@@ -40,8 +43,8 @@ export const AddCouponForm = () => {
             />
             </div>
             <button
-            onClick={() => addCoupon}
-            className="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600"
+                onClick={() => adminAddCoupon(onCouponAdd)}
+                className="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600"
             >
             쿠폰 추가
             </button>

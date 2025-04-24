@@ -9,7 +9,7 @@ export const AdminCouponList = ({coupons}: Props) => {
     return (
         <div className="space-y-2">
             {coupons.map((coupon, index) => (
-                <AdminCouponItem coupon={coupon} index={index} />
+                <AdminCouponItem key={index} coupon={coupon} index={index} />
             ))}
         </div>
     )
